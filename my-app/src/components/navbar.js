@@ -37,7 +37,7 @@ const Navbar = () => {
               <a href="/About">About</a>
             </li>
             <li class="text-slate-700 px-5 py-2 hover:bg-red-500 hover:rounded-full hover:text-white transform ease-in-out duration-100">
-              <a href="/login">Login</a>
+              <a href="/login">Sign in</a>
             </li>
             <li class="px-5 py-2 flex items-center bg-red-500 rounded-full hover:bg-red-300 transform ease-in-out duration-100">
             <a href="/Alreadyexits" class="flex items-center text-white">
