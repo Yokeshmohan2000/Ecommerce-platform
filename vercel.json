@@ -1,0 +1,17 @@
+{
+    "functions" : {
+        "api/*" : {
+            "memory" : 128,
+            "maxDuration" : 10
+        }
+    },
+
+    
+        "redirects" : [
+            {
+                "source" : "/",
+                "destination" : "https://github.com/Yokeshmohan2000/Ecommerce-platform.git"
+            }
+        ]
+    
+}
