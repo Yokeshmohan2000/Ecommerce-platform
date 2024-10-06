@@ -29,16 +29,19 @@ function Registerpage() {
     }
     } 
     catch(error){
-        // console.error(error);
-        // document.getElementById('mesg').innerHTML = error.response.data.message;
-        // document.getElementById('mesgdiv').classList.remove('hidden');
-        // setTimeout(()=>{
-        //     document.getElementById('mesg').innerHTML = "";
-        //     document.getElementById('mesgdiv').classList.add('hidden');            
-        // },2000);
-        // console.log(error)
-        seterror(error.response.data.message)
-        fnlhandleInputChange({target:{value:""}},error.response.data.inmesg,true)
+        /* document.getElementById('mesg').innerHTML = error.response.data.message;
+        document.getElementById('mesgdiv').classList.remove('hidden');
+        setTimeout(()=>{
+            document.getElementById('mesg').innerHTML = "";
+            document.getElementById('mesgdiv').classList.add('hidden');            
+        },2000); */
+        
+        if(error.response.status == 409){
+          seterror(error.response.data.message)
+          fnlhandleInputChange({target:{value:""}},error.response.data.inmesg,true)
+        }else{
+          console.error(error)
+        }
     }
  }
 
