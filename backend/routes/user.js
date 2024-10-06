@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/Users');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Create
 router.post('/register', async (req, res) => {
@@ -43,14 +44,27 @@ router.post('/register', async (req, res) => {
 });
 
 // Read
-router.get('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
-      const users = await User.find({});
-      res.json(users);
+      // const users = await User.find({});
+      // res.json(users);
+
+      const {email,password}=req.body;
+      const user = await User.findOne({email})
+      if(!user){
+          return res.status(404).json({message:"User not Found"})
+      }
+      const validPassword = await bcrypt.compareSync(password,user.password);
+      if(!validPassword){
+          return res.status(401).json({message:"Mismatch Password",inmesg:"password"});
+      }
+      const token = jwt.sign({ id: user._id }, "secret",{ expiresIn: '1h' });
+      res.json({ token, userID: user._id,name:user.name,});
+
     } catch (error) {
       res.status(500).send(error);
-    }
-});
+    }  
+}); 
 
 // Update
 router.put('/:userId', (req, res) => {
