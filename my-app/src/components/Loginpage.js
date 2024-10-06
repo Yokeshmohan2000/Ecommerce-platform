@@ -69,9 +69,8 @@ import {Link, useNavigate } from 'react-router-dom';
                 window.sessionStorage.removeItem("sessiontoken");
                 window.sessionStorage.setItem("sessiontoken",response.data.token);
               }
-              
-            }else{
-              seterror("You Can't login without valid token")
+              navi('/Home')
+              window.location.reload();
             }
         }
       
