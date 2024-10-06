@@ -10,6 +10,7 @@ import Home from './components/Home';
 import ProductList from './components/ProductList';
 import AddFormdata from './components/AddFormdata';
 import Footer from './components/Footer';
+import Registerpage from './components/Registerpage';
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/ProductList' element={<ProductList/>}></Route>
           <Route path='/Alreadyexits' element={<Alreadyexits/>}></Route>
           <Route path='/AddFormdata' element={<AddFormdata/>}></Route>
+          <Route path='/register' element={<Registerpage/>}></Route>
 
         </Routes>
      </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import  axios  from 'axios'
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 
 ;function Loginpage() {
    
@@ -90,7 +90,7 @@ import { useNavigate } from 'react-router-dom';
 
     <p class="mt-10 text-center text-sm text-block">
       Not a member?
-      <a href="#" class="font-semibold leading-6 text-white hover:text-white">  Start a 14 day free trial</a>
+      <Link to='/register' class="font-semibold leading-6 text-white hover:text-white"> Sign Up</Link>
     </p>
   </div>
 </div>
