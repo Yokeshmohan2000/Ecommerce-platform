@@ -11,6 +11,8 @@ import ProductList from './components/ProductList';
 import AddFormdata from './components/AddFormdata';
 import Footer from './components/Footer';
 import Registerpage from './components/Registerpage';
+import { PageNotFound } from './components/PageNotFound';
+import { UserCart } from './components/UserCart';
 
 
 
@@ -28,9 +30,11 @@ function App() {
           <Route path='/About' element={<About/>}></Route>
           <Route path='/Login' element={<Loginpage/>}></Route>
           <Route path='/ProductList' element={<ProductList/>}></Route>
-          <Route path='/Alreadyexits' element={<Alreadyexits/>}></Route>
-          <Route path='/AddFormdata' element={<AddFormdata/>}></Route>
+          {/* <Route path='/Alreadyexits' element={<Alreadyexits/>}></Route>  */} 
+          {/* <Route path='/AddFormdata' element={<AddFormdata/>}></Route> */}
           <Route path='/register' element={<Registerpage/>}></Route>
+          <Route path='*' element={<PageNotFound/>}></Route>
+          <Route path='/usercart' element={<UserCart/>}></Route>
 
         </Routes>
      </BrowserRouter>
