@@ -10,16 +10,16 @@ const Navbar = () => {
     setOpen(!open);
   }
 
-  useEffect(()=>{
-    let lstoken = window.sessionStorage.getItem("sessiontoken");
+  useEffect(()=>{ 
+    let lstoken = window.sessionStorage.getItem("sessiontoken"); /// token verication for login logout nav changes
     if(lstoken !== null || lstoken !== undefined || lstoken !== ""){
       settoken(lstoken)
     }
   },[])
 
   const handlesignout = () =>{
-    window.sessionStorage.removeItem("sessiontoken");   
-    window.location.href = '/login';
+    window.sessionStorage.removeItem("sessiontoken");  // signout session remove    
+    window.location.href = '/login'; // redirect to login page
   }
 
   return (
@@ -53,14 +53,19 @@ const Navbar = () => {
               {token ? <button onClick={handlesignout} href="/login">Sign Out</button> : <a href="/login">Sign in</a>}
               {/* <a href="/login">Sign in</a> */}
             </li>
-            <li class="px-5 py-2 flex items-center bg-red-500 rounded-full hover:bg-red-300 transform ease-in-out duration-100">
+            {/* <li class="px-5 py-2 flex items-center bg-red-500 rounded-full hover:bg-red-300 transform ease-in-out duration-100">
             <a href="/Alreadyexits" class="flex items-center text-white">
               <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
               </svg>
               Add
             </a>
-          </li>
+            </li> */}
+            {/* <li class="px-5 py-2 flex items-center rounded-full hover:bg-red-300 transform ease-in-out duration-100"> */}
+            <a href="/usercart" class="px-5 py-2 flex items-center rounded-full hover:bg-red-500 transform ease-in-out duration-100 hover:text-white">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+            </a>
+            {/* </li> */}
           </ul>
         </div>
       </div>
