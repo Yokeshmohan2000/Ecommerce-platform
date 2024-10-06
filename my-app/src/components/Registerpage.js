@@ -24,8 +24,6 @@ function Registerpage() {
     })
     if(response.status === 200){
         navi('/Login')
-    }else{
-        
     }
     } 
     catch(error){
@@ -35,7 +33,7 @@ function Registerpage() {
             document.getElementById('mesg').innerHTML = "";
             document.getElementById('mesgdiv').classList.add('hidden');            
         },2000); */
-        
+
         if(error.response.status == 409){
           seterror(error.response.data.message)
           fnlhandleInputChange({target:{value:""}},error.response.data.inmesg,true)
