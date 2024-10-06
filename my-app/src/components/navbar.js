@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
-
+  const [token, settoken] = useState(false);
   const [open, setOpen] = useState(false);
   const burgerclicked = () => {
     console.log('onclicked');
     setOpen(!open);
+  }
+
+  useEffect(()=>{
+    let lstoken = window.sessionStorage.getItem("sessiontoken");
+    if(lstoken !== null || lstoken !== undefined || lstoken !== ""){
+      settoken(lstoken)
+    }
+  },[])
+
+  const handlesignout = () =>{
+    window.sessionStorage.removeItem("sessiontoken");   
+    window.location.href = '/login';
   }
 
   return (
@@ -37,7 +50,8 @@ const Navbar = () => {
               <a href="/About">About</a>
             </li>
             <li class="text-slate-700 px-5 py-2 hover:bg-red-500 hover:rounded-full hover:text-white transform ease-in-out duration-100">
-              <a href="/login">Sign in</a>
+              {token ? <button onClick={handlesignout} href="/login">Sign Out</button> : <a href="/login">Sign in</a>}
+              {/* <a href="/login">Sign in</a> */}
             </li>
             <li class="px-5 py-2 flex items-center bg-red-500 rounded-full hover:bg-red-300 transform ease-in-out duration-100">
             <a href="/Alreadyexits" class="flex items-center text-white">
