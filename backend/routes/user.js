@@ -11,21 +11,32 @@ router.post('/register', async (req, res) => {
       const savedUser = await newUser.save();
       res.json(savedUser); */
      
-      const {email,name,password}=req.body;
+      const {email,name,password}=req.body.formData;
       const userName = await User.findOne({name});
       const userEmail = await User.findOne({email});
+
+      if(typeof email === 'string' && typeof name === 'string' && typeof password === 'string'
+         && (email.trim() === "" || name.trim() === "" || password.trim() === "")){
+          if (email.trim() === "") {
+            return res.status(204).json({ message: "Email is empty" });
+          } else if (name.trim() === "") {
+            return res.status(204).json({ message: "Name is empty" });
+          } else if (password.trim() === "") {
+            return res.status(204).json({ message: "Password is empty" });
+          }
+      }
        
       if(userEmail){
-        return res.status(403).json({message:"email already exits"});
+        return res.status(409).json({message:"Email already exits",inmesg:"email"});
       }
       if(userName){
-        return res.status(403).json({message:"user already exits"})
+        return res.status(409).json({message:"User already exits",inmesg:"name"})
       }
       
       const hashPassword= await bcrypt.hash(password,10) // password hassing
       const data= await new User({email,name,password:hashPassword})
       await data.save()
-      res.json("user registered successfully")
+      res.status(200).json({message:"user registered successfully"})
     } catch (error) {
       res.status(500).send(error);
     } 
